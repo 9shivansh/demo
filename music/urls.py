@@ -5,5 +5,5 @@ from music import views
 
 urlpatterns = [
     path('', views.music_home, name = 'music_home'),
-    path('upload/', views.upload, name = 'upload'),
+    path('upload/', views.song_upload, name = 'upload'),
 ]

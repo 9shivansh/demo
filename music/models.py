@@ -4,10 +4,11 @@ from django.urls import reverse
 # Create your models here.
 class song(models.Model):
 
-    song_title = models.TextField(max_length = '250')
-    song_artist = models.TextField(max_length = '100')
-    song_album = models.TextField(max_length = '100')
-    song_url = models.TextField(max_length = '500')
+    song_title = models.CharField(max_length = 100, default=None)
+    song_artist = models.CharField(max_length = 100, default=None)
+    song_album = models.CharField(max_length = 100, default=None)
+    song_url = models.CharField(max_length = 100, default=None)
+    song_file = models.FileField(upload_to='music/mp3', default=None)
 
     def __str__(self):
 

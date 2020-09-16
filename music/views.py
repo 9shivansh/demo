@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
 from django.core.files.storage import FileSystemStorage
+from .forms import SongForm
+from music import models
 
 
 #from .forms import UploadFileForm
@@ -8,18 +10,26 @@ from django.core.files.storage import FileSystemStorage
 # Imaginary function to handle an uploaded file.
 #from somewhere import handle_uploaded_file
 
-def upload(request):
+def song_upload(request):
     if request.method == 'POST':
-        uploaded_file = request.FILES['file']
-        fs = FileSystemStorage()
-        fs.save(uploaded_file.name, uploaded_file)
-    return render(request, 'upload.html')
+        form = SongForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('music_home')
+    else:
+        form = SongForm()
+    context = {
+        'form' : form
+    }
+    return render(request, 'upload.html', context)
 
 # Create your views here.
 def music_home(request):
 
-    context = {
+    all_objs = models.song.objects.all()
 
+    context = {
+        'all_objs' : all_objs,
     }
 
     return render(request, 'music_home.html', context)
