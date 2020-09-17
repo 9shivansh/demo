@@ -4,6 +4,10 @@
 
         <body>
             <a href="http://127.0.0.1:8000/admin"> Go to the admin page </a>
+                        
+            <form action="{% url 'search_results' %}" method="get">
+            <input name="q" type="text" placeholder="Search...">
+            </form>
 
             {% block body %}
 

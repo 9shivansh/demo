@@ -3,6 +3,9 @@ from django.shortcuts import HttpResponse
 from django.core.files.storage import FileSystemStorage
 from .forms import SongForm
 from music import models
+from django.views.generic import TemplateView, ListView
+from django.db.models import Q
+
 
 # Imaginary function to handle an uploaded file.
 #from somewhere import handle_uploaded_file
@@ -39,3 +42,14 @@ def song_delete(request, pk):
     to_be_deleted.delete()
 
     return redirect('music_home')
+
+class SearchResultsView(ListView):
+    model = models.song
+    template_name = 'search_results.html'
+
+    def get_queryset(self): # new
+        query = self.request.GET.get('q')
+        object_list = models.song.objects.filter(
+            Q(song_title__icontains=query) | Q(song_artist__icontains=query)
+        )
+        return object_list

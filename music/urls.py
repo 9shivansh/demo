@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.music_home, name = 'music_home'),
     path('upload/', views.song_upload, name = 'upload'),
     path('delete/<int:pk>/', views.song_delete, name = 'song_delete'),
+    path('search/', views.SearchResultsView.as_view(), name = 'search_results'),
 ]
