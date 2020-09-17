@@ -4,9 +4,6 @@ from django.core.files.storage import FileSystemStorage
 from .forms import SongForm
 from music import models
 
-
-#from .forms import UploadFileForm
-
 # Imaginary function to handle an uploaded file.
 #from somewhere import handle_uploaded_file
 
@@ -33,3 +30,12 @@ def music_home(request):
     }
 
     return render(request, 'music_home.html', context)
+
+
+def song_delete(request, pk):
+
+    to_be_deleted = models.song.objects.get(id = pk)
+
+    to_be_deleted.delete()
+
+    return redirect('music_home')

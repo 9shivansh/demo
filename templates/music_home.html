@@ -4,7 +4,8 @@
 
     <h1>Webpage Music Home Page</h1>
     {% for obj in all_objs %}
-        <p>{{ obj }} <a href="{{ obj.song_file.url }}"> Go to song </a></p>
+        <p>{{ obj }} <a href="{{ obj.song_file.url }}"> Go to song </a> <a href="{% url 'song_delete' obj.id %}">Delete song</a></p>
+
     {% endfor %}
 
     <a href="http://127.0.0.1:8000/music/upload/">Upload a new song</a>
