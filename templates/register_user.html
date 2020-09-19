@@ -9,10 +9,14 @@
 
 <form method = "POST" action = "">
     {% csrf_token %}
-    {{ form.as_p }}
+    
+    {% for field in form %}
 
-    <input type = "submit" name = "Create User">
+        {{ field.label }}
+        {{ field }}
 
+    {% endfor %}
+<input type = "submit" name = "create user">
 </form>
 </body>
 </html>

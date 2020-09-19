@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from .forms import UserForm
 
 # Create your views here.
 def index_home(request):
@@ -23,12 +24,13 @@ def login_user(request):
 
 def register_user(request):
 
-    form = UserCreationForm()
+    form = UserForm()
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('music_home')
 
     
 
