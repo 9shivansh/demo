@@ -24,12 +24,9 @@ def login_user(request):
 
         if user is not None:
 
-            print(username, password)
             login(request, user)
-            if login:
-                print("done")
+            
             return render(request, 'music_home.html')
-
         else:
 
             return redirect('error_login')
@@ -50,7 +47,7 @@ def register_user(request):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('music_home')
+            return render(request, 'index_home.html')
 
     
 

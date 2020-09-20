@@ -3,7 +3,10 @@
 {% block body  %}
 
     <h1>Webpage Music Home Page</h1>
+    <h1> Hello! {{ request.user }} </h1>
+
     {% for obj in all_objs %}
+    
         <p>{{ obj }} <a href="{{ obj.song_file.url }}"> Go to song </a> <a href="{% url 'song_delete' obj.id %}">Delete song</a></p>
 
     {% endfor %}
@@ -12,6 +15,6 @@
     <p> </p>
     <a href = "{% url 'logout_user' %}"> Logout </a>
 
-    <h1> Hello! {{ request.user }} </h1>
+    
 
 {% endblock %}
