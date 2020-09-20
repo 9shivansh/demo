@@ -9,5 +9,9 @@
     {% endfor %}
 
     <a href="{% url 'upload' %}">Upload a new song</a>
+    <p> </p>
+    <a href = "{% url 'logout_user' %}"> Logout </a>
+
+    <h1> Hello! {{ request.user }} </h1>
 
 {% endblock %}

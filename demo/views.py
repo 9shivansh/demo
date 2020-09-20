@@ -24,8 +24,11 @@ def login_user(request):
 
         if user is not None:
 
+            print(username, password)
             login(request, user)
-            return redirect('music_home')
+            if login:
+                print("done")
+            return render(request, 'music_home.html')
 
         else:
 
@@ -62,3 +65,10 @@ def register_user(request):
 def error_login(request):
 
     return render(request, 'error_login.html')
+
+
+
+def logout_user(request):
+
+    logout(request)
+    return render(request, 'index_home.html')
