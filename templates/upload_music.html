@@ -7,7 +7,7 @@
     
     <form action = "" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_table }}
         <button type="submit"> Upload </button>
     </form>
 

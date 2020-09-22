@@ -21,13 +21,14 @@ def song_upload(request):
     context = {
         'form' : form
     }
-    return render(request, 'upload.html', context)
+    return render(request, 'upload_music.html', context)
 
 # Create your views here.
 def music_home(request):
 
     all_objs = models.song.objects.all()
-
+    print(all_objs)
+    
     context = {
         'all_objs' : all_objs,
     }

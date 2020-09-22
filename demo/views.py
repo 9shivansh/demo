@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .forms import UserForm
 from django.contrib.auth import authenticate, login, logout
+from music.views import music_home
 
 # Create your views here.
 def index_home(request):
@@ -26,7 +27,8 @@ def login_user(request):
 
             login(request, user)
             
-            return render(request, 'music_home.html')
+            return music_home(request)
+            
         else:
 
             return redirect('error_login')
